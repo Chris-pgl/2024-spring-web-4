@@ -13,24 +13,38 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import new_exercise_16.starter.entity.Farm;
 import new_exercise_16.starter.entity.Farmer;
+import new_exercise_16.starter.service.FarmService;
 import new_exercise_16.starter.service.FarmerService;
 import new_exercise_16.starter.web.dto.FarmerDTO;
 
 @RestController
 @RequestMapping("/farmer/")
-public class MainController {
+public class FarmerController {
 
 
     @Autowired
     FarmerService fService;
 
+    @Autowired
+    FarmService farmservice;
+
     @GetMapping("add")
     public ResponseEntity<Void> addFarmer(){
+
+        Farm farm1 = new Farm("FarmCorn", "Edimburg");
+        Farm farm2 = new Farm("FarmGran", "Italy");
+        Farm farm3 = new Farm("FarmCurry", "Japan");
+
+        farmservice.saveFarm(farm1);
+        farmservice.saveFarm(farm2);
+        farmservice.saveFarm(farm3);
+
         
-        Farmer f1 = new Farmer("Gino", "Ginetto", 25);
-        Farmer f2 = new Farmer("Pino", "pinetto", 22);
-        Farmer f3 = new Farmer("Rino", "rinetto", 27);
+        Farmer f1 = new Farmer("Gino", "Ginetto", 22, farm1);
+        Farmer f2 = new Farmer("Pino", "pinetto", 22,farm2);
+        Farmer f3 = new Farmer("Rino", "rinetto", 27,farm3);
 
         fService.saveFarmer(f1);
         fService.saveFarmer(f2);
@@ -43,7 +57,7 @@ public class MainController {
 
     @PostMapping("create")
     public ResponseEntity<Farmer> createFarmer (@RequestBody FarmerDTO dto){
-        Farmer e = new Farmer(dto.getName(), dto.getSurname(), dto.getAge());
+        Farmer e = new Farmer(dto.getName(), dto.getSurname(), dto.getAge(), dto.getFarm());
         fService.saveFarmer(e);
         return ResponseEntity.ok(e);
     }

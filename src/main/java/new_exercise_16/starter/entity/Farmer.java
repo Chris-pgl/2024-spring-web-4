@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import new_exercise_16.starter.web.dto.FarmerDTO;
 
 @Entity
@@ -23,15 +24,18 @@ public class Farmer {
     @Column(nullable=false)
     int age;
   
-    //Farm farm
+    @ManyToOne
+    //@JoinColumn("farm_id")
+    Farm farm;
   
     public Farmer() {
     }
 
-    public Farmer(String name, String surname, int age) {
+    public Farmer(String name, String surname, int age, Farm farm) {
         this.name = name;
         this.surname = surname;
         this.age = age;
+        this.farm = farm;
     }
 
     public int getId() {
@@ -76,7 +80,15 @@ public class Farmer {
         setName(dto.getName());
         setSurname(dto.getSurname());
         setAge(dto.getAge());
-        //setFarm(dto.getFarm());
+        setFarm(dto.getFarm());
+    }
+
+    public Farm getFarm() {
+        return farm;
+    }
+
+    public void setFarm(Farm farm) {
+        this.farm = farm;
     }
 
     

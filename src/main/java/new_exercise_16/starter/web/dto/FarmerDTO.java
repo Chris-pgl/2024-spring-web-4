@@ -1,10 +1,13 @@
 package new_exercise_16.starter.web.dto;
 
+import new_exercise_16.starter.entity.Farm;
+
 public class FarmerDTO {
 
     String name;
     String surname;
     int age;
+    Farm farm;
     
     public FarmerDTO() {
     }
@@ -32,6 +35,16 @@ public class FarmerDTO {
     public void setAge(int age) {
         this.age = age;
     }
+
+    public Farm getFarm() {
+        return farm;
+    }
+
+    public void setFarm(Farm farm) {
+        this.farm = farm;
+    }
+
+  
 
     
     
