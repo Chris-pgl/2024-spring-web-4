@@ -10,6 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import new_exercise_16.starter.web.dto.FarmDTO;
 
 @Entity
 public class Farm {
@@ -74,6 +75,11 @@ public class Farm {
         this.farmers = farmers;
     }
 
+
+    public void update(FarmDTO dto){
+        setName(dto.getName());
+        setCity(dto.getCity());
+    }
 
     
 }
