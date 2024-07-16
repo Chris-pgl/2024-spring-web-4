@@ -77,6 +77,7 @@ public class FarmController {
         service.deleteFarm(farm);
 
         return ResponseEntity.ok("Farm cancellata");
+        
     }
 
  }
