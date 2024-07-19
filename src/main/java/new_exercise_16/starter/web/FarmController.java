@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,11 +17,11 @@ import org.springframework.web.bind.annotation.RestController;
 import new_exercise_16.starter.entity.Farm;
 import new_exercise_16.starter.service.FarmService;
 import new_exercise_16.starter.web.dto.FarmDTO;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 @RestController
 @RequestMapping("/farm/")
+@CrossOrigin(origins = "http://localhost:5173")
 public class FarmController {
 
     @Autowired
