@@ -1,5 +1,6 @@
 package new_exercise_16.starter.entity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -24,7 +25,7 @@ public class Farmer {
     @Column(nullable=false)
     int age;
   
-    @ManyToOne
+    @ManyToOne(cascade= CascadeType.ALL)
     //@JoinColumn("farm_id")
     Farm farm;
   
