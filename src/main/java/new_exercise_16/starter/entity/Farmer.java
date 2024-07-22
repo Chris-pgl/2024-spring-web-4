@@ -39,6 +39,11 @@ public class Farmer {
         this.farm = farm;
     }
 
+    public Farmer(FarmerDTO farmerDto) {
+
+        update(farmerDto);
+    }
+
     public int getId() {
         return id;
     }

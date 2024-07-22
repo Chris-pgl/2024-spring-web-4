@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -59,9 +60,19 @@ public class FarmerController {
 
     @PostMapping("create")
     public ResponseEntity<Farmer> createFarmer (@RequestBody FarmerDTO dto){
-        Farmer e = new Farmer(dto.getName(), dto.getSurname(), dto.getAge(), dto.getFarm());
-        fService.saveFarmer(e);
-        return ResponseEntity.ok(e);
+        Optional<Farm> optFarm = farmservice.getFarmById(dto.getFarmId());
+        if(optFarm.isEmpty()){
+            return ResponseEntity.badRequest().build();
+        }
+        
+        Farm farm = optFarm.get();
+        Farmer farmer = new Farmer(dto);
+
+        farmer.setFarm(farm);
+        fService.saveFarmer(farmer);
+
+        return ResponseEntity.ok(farmer);
+
     }
 
     @GetMapping("all")
@@ -86,7 +97,7 @@ public class FarmerController {
     }
 
 
-    @GetMapping("delete/{id}")
+    @DeleteMapping("delete/{id}")
     public ResponseEntity<String> deleteFarmer(@PathVariable int id){
         Optional<Farmer> optFar = fService.getFarmerById(id);
         if(optFar.isEmpty()){

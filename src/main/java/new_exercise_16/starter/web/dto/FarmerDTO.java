@@ -8,6 +8,8 @@ public class FarmerDTO {
     String surname;
     int age;
     Farm farm;
+
+    int farmId;
     
     public FarmerDTO() {
     }
@@ -44,6 +46,20 @@ public class FarmerDTO {
         this.farm = farm;
     }
 
+    public int getFarmId() {
+        return farmId;
+    }
+
+    public void setFarmId(int farmId) {
+        this.farmId = farmId;
+    }
+
+    @Override
+    public String toString() {
+        return "FarmerDTO [name=" + name + ", surname=" + surname + ", age=" + age + ", farmId=" + farmId + "]";
+    }
+
+    
   
 
     
